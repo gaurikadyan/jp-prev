@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+int digitSum(int num) {
+    int sum = 0;
+    while (num > 0) {
+        sum += num % 10;
+        num /= 10;
+    }
+    return sum;
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    int f[82] = {0};
+    for (int i = 1; i <= n; i++) {
+        f[digitSum(i)]++;
+    }
+
+    int max_winners = 0;
+    for (int i = 1; i <= 81; i++) {
+        if (f[i] > max_winners) {
+            max_winners = f[i];
+        }
+    }
+
+    int count = 0;
+    for (int i = 1; i <= 81; i++) {
+        if (f[i] > 0 && f[i] == max_winners) {
+            count++;
+        }
+    }
+
+    cout << count << endl;
+    return 0;
+}
