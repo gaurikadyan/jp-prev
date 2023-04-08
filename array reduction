@@ -18,3 +18,37 @@ public static int reductionCost(int[] num) {
 		return totalCost;
 	}
   
+  
+  //CHATGPT ---------------------------------------------------------------------------------------------------------------------------------------------------------
+  
+  int reductionCost(vector<int>& num) {
+    // Create a min heap (priority queue)
+    priority_queue<int, vector<int>, greater<int>> pq;
+
+    // Add all elements to the priority queue
+    for (int n : num) {
+        pq.push(n);
+    }
+
+    int total_cost = 0;
+
+    // While there are more than 1 element in the priority queue
+    while (pq.size() > 1) {
+        // Remove the two smallest elements
+        int a = pq.top();
+        pq.pop();
+        int b = pq.top();
+        pq.pop();
+
+        // Calculate the cost of the move
+        int cost = a + b;
+
+        // Add the cost back to the priority queue
+        pq.push(cost);
+
+        // Update the total cost
+        total_cost += cost;
+    }
+
+    return total_cost;
+}
