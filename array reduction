@@ -1,0 +1,20 @@
+//Other solution is using PriorityQueue in Java which stores elements ccording to their natual ordering or by a comparater provided at queue construction time. Here is that code. This is super quick. I don't think they would like this direct approach.
+
+public static int reductionCost(int[] num) {
+		// num.length >= 2
+		PriorityQueue<Integer> pq = new PriorityQueue<>();
+		int totalCost = 0;
+		for (int i = 0; i < num.length; i++) {
+			pq.add(num[i]);
+		}
+		
+		while (pq.size() > 1) {
+			int num1 = pq.poll();
+			int num2 = pq.poll();
+			int cost = num1 + num2;
+			totalCost += cost;
+			pq.add(cost);
+		}
+		return totalCost;
+	}
+  
