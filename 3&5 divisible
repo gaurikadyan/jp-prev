@@ -1,0 +1,47 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+vector<long long> idealNumbersInRange(long long lower, long long upper) {
+    vector<long long> idealNumbers;
+
+    for (int x = 0; ; x++) {
+        long long pow3 = 1;
+        for (int i = 0; i < x; i++) {
+            pow3 *= 3;
+        }
+        if (pow3 > upper) {
+            break;
+        }
+
+        for (int y = 0; ; y++) {
+            long long n = pow3;
+            long long pow5 = 1;
+            for (int i = 0; i < y; i++) {
+                pow5 *= 5;
+            }
+            n *= pow5;
+
+            if (n > upper) {
+                break;
+            }
+            if (n >= lower) {
+                idealNumbers.push_back(n);
+            }
+        }
+    }
+
+    return idealNumbers;
+}
+
+int main() {
+    long long lower, upper;
+    cin >> lower >> upper;
+
+    vector<long long> idealNumbers = idealNumbersInRange(lower, upper);
+    for (int i = 0; i < idealNumbers.size(); i++) {
+        cout << idealNumbers[i] << endl;
+    }
+
+    return 0;
+}
